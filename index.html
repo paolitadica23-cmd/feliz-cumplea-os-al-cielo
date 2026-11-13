@@ -155,3 +155,70 @@
         }
 
         .wish-btn:hover {
+            background: rgba(252, 234, 187, 0.15);
+            box-shadow: 0 0 15px rgba(252, 234, 187, 0.2);
+        }
+
+        .wish-text {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #ffd56b;
+            opacity: 0;
+            transition: opacity 1s ease;
+            min-height: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars" id="stars"></div>
+
+    <main class="card">
+        <div class="candle-container" title="Una luz siempre encendida por ti">
+            <div class="flame"></div>
+        </div>
+
+        <h1>Un ángel al cielo</h1>
+        <p class="date">13 de noviembre</p>
+
+        <div class="message">
+            <p>
+                "Hoy el cielo celebra tu vida, y aquí en la tierra celebramos la suerte de haberte tenido. 
+                Aunque ya no podamos abrazarte, tu recuerdo sigue iluminando cada uno de nuestros días. 
+                Gracias por todo el amor, las risas y las huellas que dejaste en nuestros corazones."
+            </p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="signature">
+            Con todo mi amor y gratitud eterna,
+            <span>Angie P..</span>
+        </div>
+
+        <button class="wish-btn" onclick="sendLight()">Enviar un pensamiento al cielo ✨</button>
+        <p class="wish-text" id="wishText"></p>
+    </main>
+
+    <script>
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 80; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 2.5 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+            starsContainer.appendChild(star);
+        }
+
+        function sendLight() {
+            const text = document.getElementById('wishText');
+            text.textContent = "Tu cariño y tu luz han sido enviados hacia las estrellas 🤍";
+            text.style.opacity = 1;
+        }
+    </script>
+</body>
+</html>
