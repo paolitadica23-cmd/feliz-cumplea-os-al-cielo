@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños hasta el cielo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            color: #f4f1ea;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Fondo de estrellas */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 0.9; transform: scale(1.2); }
+        }
+
+        /* Tarjeta principal */
+        .card {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 45px 35px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Luz / Vela simbólica */
+        .candle-container {
+            margin: 0 auto 25px;
+            width: 40px;
+            height: 60px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .flame {
+            width: 16px;
+            height: 28px;
+            background: radial-gradient(ellipse at bottom, #fff 0%, #ffd56b 40%, #ff8c00 90%, transparent 100%);
+            border-radius: 50% 50% 35% 35%;
+            box-shadow: 0 0 20px #ffd56b, 0 0 40px #ff8c00;
+            animation: flicker 2.5s infinite alternate ease-in-out;
+        }
+
+        @keyframes flicker {
+            0% { transform: scale(1) rotate(-1deg); opacity: 0.95; }
+            50% { transform: scale(1.05, 0.95) rotate(1deg); opacity: 1; }
+            100% { transform: scale(0.98, 1.03) rotate(-0.5deg); opacity: 0.9; }
+        }
+
+        /* Opcional: Foto circular */
+        .photo-frame {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(135deg, rgba(255,215,130,0.6), rgba(255,255,255,0.1));
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #fceabb;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .date {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #a8b2c1;
+            margin-bottom: 30px;
+        }
+
+        .message {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            line-height: 1.75;
+            color: #eae6df;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: rgba(252, 234, 187, 0.3);
+            margin: 0 auto 25px;
+        }
+
+        .signature {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            font-weight: 300;
+        }
+
+        .signature span {
+            display: block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: #fceabb;
+            margin-top: 5px;
+        }
+
+        /* Botón interactivo para encender un deseo */
+        .wish-btn {
+            margin-top: 30px;
+            background: transparent;
+            border: 1px solid rgba(252, 234, 187, 0.4);
+            color: #fceabb;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .wish-btn:hover {
+            background: rgba(252, 234, 187, 0.15);
+            box-shadow: 0 0 15px rgba(252, 234, 187, 0.2);
+        }
+
+        .wish-text {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #ffd56b;
+            opacity: 0;
+            transition: opacity 1s ease;
+            min-height: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars" id="stars"></div>
+
+    <main class="card">
+        <!-- Luz conmemorativa -->
+        <div class="candle-container" title="Una luz siempre encendida por ti">
+            <div class="flame"></div>
+        </div>
+
+        <!-- SI QUIERES PONER UNA FOTO:
+             1. Sube la foto a tu repositorio con el nombre "foto.jpg"
+             2. Quita los símbolos de comentario de las siguientes 3 líneas -->
+        <!--
+        <div class="photo-frame">
+            <img src="foto.jpg" alt="En memoria">
+        </div>
+        -->
+
+        <h1>Feliz cumpleaños hasta el cielo</h1>
+        <p class="date">[Fecha de nacimiento - Hoy y siempre]</p>
+
+        <div class="message">
+            <p>
+                "Hoy el cielo celebra tu vida, y aquí en la tierra celebramos la suerte de haberte tenido. 
+                Aunque ya no podamos abrazarte, tu recuerdo sigue iluminando cada uno de nuestros días. 
+                Gracias por todo el amor, las risas y las huellas que dejaste en nuestros corazones."
+            </p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="signature">
+            Con todo mi amor y gratitud eterna,
+            <span>[Tu nombre]</span>
+        </div>
+
+        <button class="wish-btn" onclick="sendLight()">Enviar un pensamiento al cielo ✨</button>
+        <p class="wish-text" id="wishText"></p>
+    </main>
+
+    <script>
+        // Generar cielo estrellado
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 80; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 2.5 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+            starsContainer.appendChild(star);
+        }
+
+        // Interacción suave al pulsar el botón
+        function sendLight() {
+            const text = document.getElementById('wishText');
+            text.textContent = "Tu cariño y tu luz han sido enviados hacia las estrellas 🤍";
+            text.style.opacity = 1;
+        }
+    </script>
+</body>
+</html>
